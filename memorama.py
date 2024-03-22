@@ -1,14 +1,4 @@
-"""Memory, puzzle game of number pairs.
-
-Exercises:
-
-1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
-3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
-"""
-
+#Definimos las librerias a utilizar
 from random import *
 from turtle import *
 
@@ -19,7 +9,7 @@ tiles = list(range(32)) * 2
 state = {'mark': None}
 hide = [True] * 64
 
-
+#Funcion para dibujar un cuadrado
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
     up()
@@ -32,17 +22,17 @@ def square(x, y):
         left(90)
     end_fill()
 
-
+#Funcion para ocultar las fichas
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
     return int((x + 200) // 50 + ((y + 200) // 50) * 8)
 
-
+#Funcion para convertir las fichas en coordenadas
 def xy(count):
     """Convert tiles count to (x, y) coordinates."""
     return (count % 8) * 50 - 200, (count // 8) * 50 - 200
 
-
+#Funcion para seleccionar las fichas
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
     spot = index(x, y)
@@ -55,7 +45,7 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
 
-
+#Funcion para dibujar las fichas
 def draw():
     """Draw image and tiles."""
     clear()
@@ -80,7 +70,7 @@ def draw():
     update()
     ontimer(draw, 100)
 
-
+#Iniciamos el juego
 shuffle(tiles)
 setup(420, 420, 370, 0)
 addshape(car)
